@@ -1,0 +1,18 @@
+% Configurare la connessione seriale con Arduino
+arduinoPort = 'COM3'; % Modificare con la porta corretta (leggibile sull'IDE di Arduino)
+baudRate = 9600;
+arduino = serialport(arduinoPort, baudRate);
+
+pause(2); % Aspettare che Arduino si inizializzi
+
+% Angoli di esempio per 6 servomotori
+angles = [45, 120, 60, 30, 150, 75]; % Arbitrari
+
+% Creare stringa "45,120,60,30,150,75"
+message = sprintf('%d,%d,%d,%d,%d,%d\n', angles);
+
+% Invia il messaggio
+writeline(arduino, message);
+disp('✅ Angoli inviati con successo!');
+
+clear arduino; % Chiudere la connessione
