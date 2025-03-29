@@ -55,6 +55,31 @@ void loop() {
     delay(2000);
 }
 
+
+/* void loop() {
+    if (Serial.available()) {
+        String data = Serial.readStringUntil('\n'); // Legge la stringa fino a '\n'
+        int angles[N_SERVOS]; // Array per memorizzare gli angoli ricevuti
+        int index = 0;
+        
+        char* ptr = strtok((char*)data.c_str(), ","); // Divide la stringa in base alle virgole
+        while (ptr != NULL && index < N_SERVOS) {
+            angles[index] = atoi(ptr); // Converte il valore ricevuto in intero
+            ptr = strtok(NULL, ",");
+            index++;
+        }
+
+        // Se abbiamo ricevuto tutti gli angoli, aggiorniamo i servomotori
+        if (index == N_SERVOS) {
+            Serial.println("Dati ricevuti, muovo i servomotori...");
+            moveAllServos(angles, T_POS);
+        } else {
+            Serial.println("Errore: dati incompleti ricevuti!");
+        }
+    }
+} */
+
+
 // Funzione per attendere il completamento del movimento dei servomotori
 void waitUntilEasingMovementComplete() {
     unsigned long startTime = millis();
